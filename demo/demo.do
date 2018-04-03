@@ -2,15 +2,15 @@
 
 * Master setup
 
-  global directory "/Users/bbdaniels/GitHub/overleaf-stata-tools"
+  global directory "/Users/bbdaniels/GitHub/overleaf-stata-demo"
 
-  qui do "${directory}/src/gitSuite.ado"
-  qui do "${directory}/src/mat2csv.ado"
-  qui do "${directory}/src/reg2csv.ado"
+  qui do "${directory}/ado/gitSuite.ado"
+  qui do "${directory}/ado/mat2csv.ado"
+  qui do "${directory}/ado/reg2csv.ado"
 
-  gitReady "DEMO OVERLEAF LOCAL"
+  gitReady "/Users/bbdaniels/GitHub/overleaf-stata-demo"
 
-* Demo dofile
+* Pull repo
 
   gitSet
 
