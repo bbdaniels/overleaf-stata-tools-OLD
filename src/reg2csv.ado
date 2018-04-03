@@ -17,7 +17,7 @@ syntax ///
 
 cap mat drop results results_STARS regStats nullStar allStats allStars
 
-cap xml_prep `anything' , below `options'
+cap reg_prep `anything' , below `options'
 
 mat results = r(results)
 mat results_STARS = r(results_STARS)
