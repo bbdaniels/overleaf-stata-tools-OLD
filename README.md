@@ -1,7 +1,8 @@
 # overleaf-stata-tools
-Stata tools for using Overleaf for dynamic documents
 
-This repo contains several utilities for using Overleaf as a dynamic documents processor. Specifically, it contains:
+This repo contains several utilities for using Overleaf as a dynamic documents processor. For a full demo, clone https://git.overleaf.com/15274949kphkgfxjmhxb to desktop to observe the file structure and visit http://bit.ly/overleaf-stata-demo to see the LuaLaTeX implementation of CSV tables in action.
+
+This repo contains:
 
 1. `gitSuite`, a wrapper for Git shell commands that:
     1. Checks installations and sets a `${git}` global pointing to your Overleaf local clone
