@@ -22,9 +22,17 @@ cap reg_prep `anything' , below `options'
 mat results = r(results)
 mat results_STARS = r(results_STARS)
 
+qui forvalues row = 1/`=rowsof(results_STARS)' {
+  forvalues col = 1/`=colsof(results_STARS)' {
+    local check = results_STARS[`row',`col']
+    if "`check'" == "1" mat results_STARS[`row',`col'] = 3
+    if "`check'" == "3" mat results_STARS[`row',`col'] = 1
+  }
+}
+
 * Get stats
 
-if "stats" != "" {
+qui if "stats" != "" {
     foreach reg in `anything' {
       est restore `reg'
       cap mat drop regStats nullStar
