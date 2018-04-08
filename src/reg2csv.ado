@@ -80,6 +80,8 @@ end
 * Required: modified version of xml_tab (all remaining code)
 *! This code based on xml_tab version 3.42 17Mar2008 M. Lokshin, Z. Sajaia
 
+*! version 3.42 17Mar2008 M. Lokshin, Z. Sajaia
+
 # delimit ;
 cap prog drop reg_prep;
 program define reg_prep , rclass;
@@ -665,6 +667,7 @@ end;
 /*******************************************************************************/
 /*******************************************************************************/
 
+cap prog drop Keep;
 program define Keep, rclass;   //adopted from est_table.ado
 	args b spec;
 
@@ -697,6 +700,7 @@ program define Keep, rclass;   //adopted from est_table.ado
 	return matrix result `RES';
 end; // Keep
 
+cap prog drop Drop;
 program define Drop, rclass;   //borrowed from est_table.ado
 	args b spec;
 	tempname bt;
@@ -731,7 +735,7 @@ program define Drop, rclass;   //borrowed from est_table.ado
 	return matrix result `bt';
 end; // Drop
 
-
+cap prog drop keepdrop;
 program define keepdrop;
 	syntax anything(name=bbc) [, keep(string) drop(string)];
 
@@ -759,6 +763,7 @@ program define keepdrop;
 	};
 end; // program keepdrop
 
+cap prog drop GetStats;
 program define GetStats;       //borrowed from est_table.ado
 	args stats bs;
 	local r2_a  "r2_a";
@@ -829,6 +834,7 @@ program define GetStats;       //borrowed from est_table.ado
 	};
 end; // GetStats
 
+cap prog drop Mkemat;
 program define Mkemat, rclass;
 	syntax [anything] [, STATS(string) STARs(passthru) LOng sd2 cap(string) keep(passthru) drop(passthru)
 						EQuations(string) NOADJust eform(string)];
@@ -1199,6 +1205,7 @@ program define Mkemat, rclass;
 	c_local starchars `"`starchars'"';
 end; // Mkemat
 
+cap prog drop formateqnames;
 program define formateqnames;
 	args B V;
 
@@ -1225,6 +1232,7 @@ program define formateqnames;
 	};
 end; // program formateqnames
 
+cap prog drop AdjustRowEq;
 program define AdjustRowEq;    // borrowed from est_table.ado
 	args b ni nmodel eqspec;
 
@@ -1294,6 +1302,7 @@ program define AdjustRowEq;    // borrowed from est_table.ado
 	matrix roweq `b' = `beqn';
 end;
 
+cap prog drop savetodataset;
 program define savetodataset;
 	syntax anything [, format(string asis) sd2 RNames(string asis)
 					   CEq(string asis) CNames(string asis) etitle(string) fixed mv(passthru)];
@@ -1388,6 +1397,7 @@ program define savetodataset;
 	MVEncode, `mv';
 end;
 
+cap prog drop readformats;
 program define readformats;
 args ni format;
 	local format : subinstr local format "," "", all;
@@ -1443,6 +1453,7 @@ args ni format;
 	};
 end;
 
+cap prog drop _styles;
 program define _styles;
 	args styles font starchars;
 
@@ -1592,6 +1603,7 @@ program define _styles;
 	c_local styles "<Styles><Style ss:ID='s' />`styles'</Styles>";
 end;
 
+cap prog drop updateopts;
 program define updateopts;
 	syntax [anything(name=stname)], [VER(string) updateopts EXcelpath(string) CAlcpath(string)] isest(integer);
 
@@ -1743,6 +1755,7 @@ program define updateopts;
 	c_local styles `"`style'"';
 end; // program updateopts
 
+cap prog drop opts_Exclusive;
 program define opts_Exclusive; // Rewriting for the Stata 8.0
 args opts;
 	local n : word count `opts';
@@ -1765,6 +1778,7 @@ args opts;
 	exit 198;
 end; // program opts_Exclusive
 
+cap prog drop expandspec;
 program define expandspec;
 	args result b spec;
 
@@ -1782,6 +1796,7 @@ program define expandspec;
 	c_local `result' "`spn'";
 end; // program expandspec
 
+cap prog drop opts_excl1;
 program define opts_excl1;
 	args nest st opt;
 		local 0 ", `st'";
@@ -1792,6 +1807,7 @@ program define opts_excl1;
 	c_local `nest' `st';
 end; // program opts_excl1
 
+cap prog drop findfont;
 program define findfont;
 	args line font;
 	local xmlstr `"`line'"';
@@ -1823,6 +1839,7 @@ program define findfont;
 	c_local line `"`line'"';
 end; // program findfont
 
+cap prog drop getstarchars;
 program define getstarchars;
 	syntax [, STARs(string asis)];
 
@@ -1855,6 +1872,7 @@ program define getstarchars;
 	c_local starchars `"`starchars'"';
 end; // program gettstarchars
 
+cap prog drop Mat_Capp;
 program define Mat_Capp;
 	if _caller() >= 9.0 {;
 		mat_capp `0';
@@ -1882,6 +1900,7 @@ program define Mat_Capp;
 	};
 end; // program Mat_Capp
 
+cap prog drop Widemat;
 program define Widemat, rclass;
 	args bbc;
 
@@ -1937,6 +1956,7 @@ program define Widemat, rclass;
 	c_local showeq0 "showeq";
 end; // program Widemat
 
+cap prog drop MVEncode;
 program define MVEncode;
 	syntax, [mv(string asis)];
 
@@ -1991,11 +2011,13 @@ program define MVEncode;
 
 end;
 
+cap prog drop Error;
 program define Error;
 	args nr txt;
 
 	display as error `"`txt'"';
 	exit `nr';
 end;
+
 
 * Have a lovely day!
