@@ -1,6 +1,10 @@
 # overleaf-stata-tools
 
-This repo contains several utilities for using Overleaf as a dynamic documents processor. For a full demo, clone https://git.overleaf.com/15274949kphkgfxjmhxb to desktop to observe the file structure and visit http://bit.ly/overleaf-stata-demo to see the LuaLaTeX implementation of CSV tables in action.
+This repo contains several utilities for using Overleaf as a dynamic documents processor.
+
+In the current release, [Overleaf v2](https://www.overleaf.com/help/342-overleaf-v2-faq), offline changes must be synced to a Git repository (on, say, GitHub.com), then pulled into Overleaf. 
+
+For a full demo in Overleaf v1, where the changes can be pushed directly to a remote hosted by Overleaf, clone https://git.overleaf.com/15274949kphkgfxjmhxb to desktop to observe the file structure and visit http://bit.ly/overleaf-stata-demo to see the LuaLaTeX implementation of CSV tables in action.
 
 This repo contains:
 
